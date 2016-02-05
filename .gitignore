@@ -1,0 +1,20 @@
+# unnötiges generiertes zeugs
+*.jar
+
+
+# java müll
+.settings/
+.metadata/
+.recommenders/
+bin/
+build/
+target/
+delombok/
+.classpath
+.project
+*.class
+
+#mvn
+mvnw
+mvnw.cmd
+.mvn
