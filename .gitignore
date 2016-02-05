@@ -1,6 +1,6 @@
-# unnötiges generiertes zeugs
+﻿# unnötiges generiertes zeugs
 *.jar
-
+src/main/java-gen/
 
 # java müll
 .settings/
