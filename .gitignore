@@ -1,6 +1,7 @@
 ﻿# unnötiges generiertes zeugs
 *.jar
 src/main/java-gen/
+.springbeans
 
 # java müll
 .settings/
