@@ -1,3 +1,3 @@
-[submodule "protos"]
-	path = protos
-	url = https://github.com/Pixelgaffer/dico-proto
+[submodule "src/main/proto"]
+	path = src/main/protobuf
+	url = https://github.com/Pixelgaffer/dico-proto.git
