@@ -15,22 +15,22 @@ import com.vaadin.ui.VerticalLayout;
 public class WorkerGrids extends VerticalLayout {
 	private static final long serialVersionUID = -132367693523575041L;
 
-	private Map<Long, Grid> grids = new HashMap<>();
+	private Map<String, Grid> grids = new HashMap<>();
 	
 	public WorkerGrids() {
 		setImmediate(true);
 	}
 	
-	public void addWorker(long id) {
+	public void addWorker(String id) {
 		Grid grid = new Grid("Worker " + id);
 		
-		BeanContainer<Long, Job> container = new BeanContainer<>(Job.class);
+		BeanContainer<String, Job> container = new BeanContainer<>(Job.class);
 		container.setBeanIdProperty("id");
 		grid.setContainerDataSource(container);
 		
 		grid.removeColumn("resultData");
 		grid.removeColumn("runtime");
-		grid.removeColumn("workerId");
+		grid.removeColumn("worker");
 		grid.removeColumn("status");
 		grid.setImmediate(true);
 		grid.setColumnOrder("id", "arguments", "jobClass", "taskGroup", "retries");
@@ -40,7 +40,7 @@ public class WorkerGrids extends VerticalLayout {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void addJobToWorker(Job job, long id) {
+	public void addJobToWorker(Job job, String id) {
 		((BeanContainer<Long, Job>) grids.get(id).getContainerDataSource()).addBean(job);
 		grids.get(id).clearSortOrder();
 	}
@@ -52,9 +52,9 @@ public class WorkerGrids extends VerticalLayout {
 		}
 	}
 	
-	public void removeWorker(String ip) {
-		removeComponent(grids.get(ip));
-		grids.remove(ip);
+	public void removeWorker(String id) {
+		removeComponent(grids.get(id));
+		grids.remove(id);
 	}
 	
 	@EventListener
@@ -64,10 +64,10 @@ public class WorkerGrids extends VerticalLayout {
 		removeJob(j.getId());
 		
 		if(j.getStatus() == TaskStatusUpdate.STARTED) {
-			if(!grids.containsKey(j.getWorkerId())) {
-				addWorker(j.getWorkerId());
+			if(!grids.containsKey(j.getWorker())) {
+				addWorker(j.getWorker());
 			}
-			addJobToWorker(j, j.getWorkerId());
+			addJobToWorker(j, j.getWorker());
 		}
 	}
 	

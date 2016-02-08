@@ -23,10 +23,10 @@ public class Job {
 	private long runtime;
 	
 	@Getter @Setter
-	private long workerId;
+	private String worker;
 	
 	@NonNull @Getter
-	private long taskGroup;
+	private String taskGroup;
 	
 	@Getter @Setter
 	private long retries;

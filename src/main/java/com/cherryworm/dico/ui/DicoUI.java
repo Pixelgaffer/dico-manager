@@ -9,7 +9,6 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.Accordion;
-import com.vaadin.ui.JavaScript;
 import com.vaadin.ui.UI;
 
 @Theme("valo")

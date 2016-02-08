@@ -43,8 +43,8 @@ public class JobCacheServiceImpl implements JobCacheService {
 			j.setStatus(m.getType());
 			if(m.hasRuntime())
 				j.setRuntime(m.getRuntime());
-			if(m.hasWorkerId())
-				j.setWorkerId(m.getWorkerId());
+			if(m.hasWorker())
+				j.setWorker(m.getWorker());
 			if(m.hasRetries())
 				j.setRetries(m.getRetries());
 		}

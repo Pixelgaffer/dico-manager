@@ -16,13 +16,10 @@ public class TaskPane extends HorizontalLayout {
 	
 	private Grid taskQueue;
 	private Grid finishedTasks;
-	private WorkerGrids workerGrids;
 	private BeanContainer<Long, Job> taskQueueContainer;
 	private BeanContainer<Long, Job> finishedTasksContainer;
 	
-	public TaskPane(WorkerGrids workerGrids) {
-		this.workerGrids = workerGrids;
-		
+	public TaskPane(WorkerGrids workerGrids) {		
 		setImmediate(true);
 		setCaption("Tasks");
 		setIcon(new FileResource(new File("task_list.png")));
@@ -35,7 +32,7 @@ public class TaskPane extends HorizontalLayout {
 		taskQueue.removeColumn("resultData");
 		taskQueue.removeColumn("retries");
 		taskQueue.removeColumn("runtime");
-		taskQueue.removeColumn("workerId");
+		taskQueue.removeColumn("worker");
 		taskQueue.removeColumn("status");
 		taskQueue.setColumnOrder("id", "arguments", "jobClass", "taskGroup");
 		taskQueue.setImmediate(true);
@@ -49,7 +46,7 @@ public class TaskPane extends HorizontalLayout {
 		finishedTasks = new Grid("Finished Tasks", finishedTasksContainer);
 		finishedTasks.setSizeFull();
 		finishedTasks.removeColumn("retries");
-		finishedTasks.removeColumn("workerId");
+		finishedTasks.removeColumn("worker");
 		finishedTasks.removeColumn("status");
 		finishedTasks.setImmediate(true);
 		finishedTasks.setColumnOrder("id", "arguments", "jobClass", "taskGroup", "runtime", "resultData");
@@ -58,7 +55,7 @@ public class TaskPane extends HorizontalLayout {
 		setSpacing(true);
 		setMargin(true);
 	}
-	
+	 
 	@EventListener
 	public void taskChanged(TaskStatusChangedEvent e) {
 		Job j = e.job;
