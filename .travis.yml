@@ -1,0 +1,13 @@
+language: java
+sudo: required
+dist: trusty
+install:
+- wget https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz
+- tar -xzvf protobuf-2.6.1.tar.gz
+- pushd protobuf-2.6.1
+- sudo ./configure
+- sudo make -j2
+- sudo make install -j2
+- sudo ldconfig
+- popd
+script: mvn package
