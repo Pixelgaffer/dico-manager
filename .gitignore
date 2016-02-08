@@ -2,6 +2,7 @@
 *.jar
 src/main/java-gen/
 .springbeans
+spring-shell.log
 
 # java müll
 .settings/
