@@ -11,6 +11,7 @@ import org.springframework.context.event.EventListener;
 import com.cherryworm.dico.events.TaskStatusChangedEvent;
 import com.cherryworm.dico.models.Job;
 import com.cherryworm.dico.services.JobCacheService;
+import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
@@ -26,6 +27,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 @Theme("valo")
 @SpringUI(path = "/result")
+@Push
 public class ResultsUI extends UI {
 	private static final long serialVersionUID = -5575085365030094419L;
 
@@ -40,7 +42,7 @@ public class ResultsUI extends UI {
 	
 	@Override
 	protected void init(VaadinRequest request) {
-		if(request.getAttribute("id") == null) 	{
+		if(request.getParameter("id") == null) 	{
 			content = "Please provide a job id!".getBytes(StandardCharsets.UTF_8);
 			id = -1;
 		}
@@ -132,7 +134,7 @@ public class ResultsUI extends UI {
 		}
 		if(e.job.getResultData() != null) {
 			content = e.job.getResultData();
-			current.buttonClick(null);
+			access(() -> current.buttonClick(null));
 		}
 	}
 

@@ -10,6 +10,7 @@ import com.vaadin.data.util.BeanContainer;
 import com.vaadin.server.FileResource;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.renderers.ButtonRenderer;
 
 public class TaskPane extends HorizontalLayout {
 	private static final long serialVersionUID = 6505016319843092706L;
@@ -34,6 +35,7 @@ public class TaskPane extends HorizontalLayout {
 		taskQueue.removeColumn("runtime");
 		taskQueue.removeColumn("worker");
 		taskQueue.removeColumn("status");
+		taskQueue.removeColumn("result");
 		taskQueue.setColumnOrder("id", "arguments", "jobClass", "taskGroup");
 		taskQueue.setImmediate(true);
 		addComponent(taskQueue);
@@ -48,8 +50,10 @@ public class TaskPane extends HorizontalLayout {
 		finishedTasks.removeColumn("retries");
 		finishedTasks.removeColumn("worker");
 		finishedTasks.removeColumn("status");
+		finishedTasks.removeColumn("resultData");
 		finishedTasks.setImmediate(true);
-		finishedTasks.setColumnOrder("id", "arguments", "jobClass", "taskGroup", "runtime", "resultData");
+		finishedTasks.setColumnOrder("id", "arguments", "jobClass", "taskGroup", "runtime", "result");
+		finishedTasks.getColumn("result").setRenderer(new ButtonRenderer(e -> getUI().getPage().setLocation("/result?id=" + e.getItemId().toString())));
 		addComponent(finishedTasks);
 		
 		setSpacing(true);

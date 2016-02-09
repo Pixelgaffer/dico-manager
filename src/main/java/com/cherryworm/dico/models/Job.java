@@ -1,6 +1,9 @@
 package com.cherryworm.dico.models;
 
 import com.cherryworm.dico.protos.TaskStatusProto.TaskStatus.TaskStatusUpdate;
+import com.vaadin.server.Page;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -36,5 +39,9 @@ public class Job {
 	
 	@NonNull @Getter @Setter
 	private TaskStatusUpdate status;
+	
+	public String getResult() {
+		return "Result";
+	}
 	
 }

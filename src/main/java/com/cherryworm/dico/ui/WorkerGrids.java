@@ -29,6 +29,7 @@ public class WorkerGrids extends VerticalLayout {
 		grid.setContainerDataSource(container);
 		
 		grid.removeColumn("resultData");
+		grid.removeColumn("result");
 		grid.removeColumn("runtime");
 		grid.removeColumn("worker");
 		grid.removeColumn("status");
